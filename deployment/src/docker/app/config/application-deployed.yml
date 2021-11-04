@@ -1,0 +1,9 @@
+migration:
+  sql:
+    directory: /app/migration/sql
+
+spring:
+  datasource:
+    url: ${POSTGRES_URL:?POSTGRES_URL_required}
+    username: ${POSTGRES_USERNAME:?POSTGRES_USERNAME_required}
+    password: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD_required}

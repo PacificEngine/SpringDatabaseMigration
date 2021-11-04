@@ -10,6 +10,7 @@ configurations.all {
 
 dependencies {
     implementation libs.bundles.springboot
+    implementation libs.bundles.postgresql
 
     compileOnly group: 'org.projectlombok', name: 'lombok', version: lombok_version
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombok_version

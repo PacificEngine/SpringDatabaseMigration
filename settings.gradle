@@ -1,4 +1,4 @@
-rootProject.name = 'docker-deployment'
+rootProject.name = 'spring-datasource-migration'
 include 'instance'
 include 'deployment'
 
@@ -15,6 +15,16 @@ dependencyResolutionManagement {
             alias('springboot-log4j2').to('org.springframework.boot', 'spring-boot-starter-log4j2').versionRef('springboot-version')
             alias('springboot-web').to('org.springframework.boot', 'spring-boot-starter-web').versionRef('springboot-version')
             bundle('springboot', ['spring-core', 'spring-context', 'springboot-autoconfigure', 'springboot-actuator', 'springboot-log4j2', 'springboot-web'])
+
+            version('postgresql-version', '42.2.21')
+            version('mybatis-version', '3.5.7')
+            version('mybatis-spring-version', '2.0.6')
+            version('mybatis-spring-starter-version', '2.2.0')
+            alias('postgresql-driver').to('org.postgresql', 'postgresql').versionRef('postgresql-version')
+            alias('mybatis-core').to('org.mybatis', 'mybatis').versionRef('mybatis-version')
+            alias('mybatis-spring').to('org.mybatis', 'mybatis-spring').versionRef('mybatis-spring-version')
+            alias('mybatis-starter').to('org.mybatis.spring.boot', 'mybatis-spring-boot-starter').versionRef('mybatis-spring-starter-version')
+            bundle('postgresql', ['postgresql-driver', 'mybatis-core', 'mybatis-spring', 'mybatis-starter'])
         }
     }
 }
