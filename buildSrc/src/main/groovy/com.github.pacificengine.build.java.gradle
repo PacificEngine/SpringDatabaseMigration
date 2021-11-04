@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+}
+
+group = project.property('project.group')
+version = project.property('project.version')
+
+sourceCompatibility = project.property('java.source')
+targetCompatibility = project.property('java.target')
+
+tasks.withType(JavaCompile) {
+    sourceCompatibility = project.property('java.source')
+    targetCompatibility = project.property('java.target')
+}
+
+jar {
+    onlyIf { !sourceSets.main.allSource.files.isEmpty() }
+    archiveBaseName = "${rootProject.name}-${project.name}"
+    archiveVersion = "${project.version}"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+javadoc {
+    if(JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
+
+task sourcesJar(type: Jar) {
+    onlyIf { !sourceSets.main.allSource.files.isEmpty() }
+    from sourceSets.main.allJava
+    archiveClassifier = 'sources'
+    archiveBaseName = "${rootProject.name}-${project.name}"
+    archiveVersion = "${project.version}"
+}
+
+task javadocJar(type: Jar) {
+    onlyIf { !sourceSets.main.allSource.files.isEmpty() }
+    from javadoc
+    archiveClassifier = 'javadoc'
+    archiveBaseName = "${rootProject.name}-${project.name}"
+    archiveVersion = "${project.version}"
+}
+
+jar.dependsOn sourcesJar
+jar.dependsOn javadocJar

@@ -1,0 +1,17 @@
+**/.idea/*
+**/.metadata/*
+**/.project/*
+**/.gradle/*
+
+**/target/*
+**/build/*
+
+**/.project
+
+**/*.log
+**/*.bak
+**/*.bak_*
+
+**/application-local.properties
+**/application-local.yaml
+**/application-local.yml

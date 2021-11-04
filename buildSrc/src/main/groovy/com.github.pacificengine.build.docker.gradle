@@ -1,0 +1,21 @@
+plugins {
+    id 'base'
+}
+
+configurations {
+    toCopy
+}
+
+task copyDockerFiles(type: Copy) {
+    from 'src/docker'
+    into 'build/docker'
+}
+
+task copyDependencies(type: Copy) {
+    from configurations.toCopy
+    into 'build/docker/app/lib'
+    duplicatesStrategy = 'include'
+}
+
+assemble.dependsOn copyDockerFiles
+assemble.dependsOn copyDependencies

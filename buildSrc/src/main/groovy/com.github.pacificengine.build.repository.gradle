@@ -1,0 +1,12 @@
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        name = "GitHubPackages"
+        url = "${project.property('maven.repo.url')}/*"
+        credentials {
+            username = project.findProperty("gpr.user") ?: System.getenv("GIT_USERNAME")
+            password = project.findProperty("gpr.key") ?: System.getenv("GIT_TOKEN")
+        }
+    }
+}

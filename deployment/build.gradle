@@ -1,0 +1,8 @@
+plugins {
+    id 'com.github.pacificengine.build.repository'
+    id 'com.github.pacificengine.build.docker'
+}
+
+dependencies {
+    toCopy project(':instance')
+}

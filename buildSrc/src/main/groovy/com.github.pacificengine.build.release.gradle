@@ -1,0 +1,34 @@
+plugins {
+    id 'maven-publish'
+    id 'signing'
+}
+
+ext {
+    isReleaseVersion = !version.endsWith("SNAPSHOT")
+}
+
+tasks.withType(Sign) {
+    onlyIf { isReleaseVersion }
+    sign publishing.publications.mavenJava
+}
+
+//https://docs.gradle.org/current/userguide/signing_plugin.html
+//https://docs.gradle.org/current/userguide/publishing_maven.html
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = "${project.property('maven.repo.url')}/${project.property('project.name.short')}"
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("GIT_USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("GIT_TOKEN")
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
+    }
+}

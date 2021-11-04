@@ -1,0 +1,20 @@
+rootProject.name = 'docker-deployment'
+include 'instance'
+include 'deployment'
+
+enableFeaturePreview('VERSION_CATALOGS')
+dependencyResolutionManagement {
+    versionCatalogs {
+        libs {
+            version('spring-version', '5.3.8')
+            version('springboot-version', '2.5.2')
+            alias('spring-core').to('org.springframework', 'spring-core').versionRef('spring-version')
+            alias('spring-context').to('org.springframework', 'spring-context').versionRef('spring-version')
+            alias('springboot-autoconfigure').to('org.springframework.boot', 'spring-boot-autoconfigure').versionRef('springboot-version')
+            alias('springboot-actuator').to('org.springframework.boot', 'spring-boot-starter-actuator').versionRef('springboot-version')
+            alias('springboot-log4j2').to('org.springframework.boot', 'spring-boot-starter-log4j2').versionRef('springboot-version')
+            alias('springboot-web').to('org.springframework.boot', 'spring-boot-starter-web').versionRef('springboot-version')
+            bundle('springboot', ['spring-core', 'spring-context', 'springboot-autoconfigure', 'springboot-actuator', 'springboot-log4j2', 'springboot-web'])
+        }
+    }
+}
