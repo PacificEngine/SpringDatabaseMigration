@@ -1,0 +1,9 @@
+migration:
+  sql:
+    directory: deployment/src/docker/app/migration/sql
+
+spring:
+  datasource:
+    #password: {password}
+    #url: jdbc:postgresql://{server_address}/{server_db}
+    #username: {username}

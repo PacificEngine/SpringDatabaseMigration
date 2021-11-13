@@ -5,8 +5,9 @@ plugins {
 
 ext {
     isReleaseVersion        = !version.endsWith("SNAPSHOT")
-    junit_version           = '5.7.1'
-    mockito_version         = '3.7.7'
-    awaitility_version      = '4.0.3'
-    lombok_version          = '1.18.18'
+    junit_version           = '5.8.1'
+    mockito_version         = '4.0.0'
+    awaitility_version      = '4.1.1'
+    lombok_version          = '1.18.22'
+    swagger_version         = '1.5.12'
 }
